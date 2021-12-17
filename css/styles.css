@@ -117,6 +117,22 @@ body {
   fill: var(--acsent-color);
 }
 
+.nav-tab.current {
+  position: relative;
+}
+
+.nav-tab.current::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--acsent-color);
+
+  position: absolute;
+  bottom: -1px;
+}
+
 .auth-nav {
   display: flex;
   margin-left: auto;
@@ -176,6 +192,7 @@ body {
   letter-spacing: 0.06em;
 
   background-color: var(--acsent-color);
+  cursor: pointer;
 }
 
 .hero-button:hover,
@@ -253,10 +270,33 @@ body {
   align-items: center;
 }
 
+.what_we_do-item {
+  position: relative;
+}
+
 .what_we_do-item:not(:first-child) {
   margin-left: 30px;
 }
 
+.what_we_do-item-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  background: rgba(47, 48, 58, 0.8);
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--second-acsent-color);
+}
 /* Наша коанда */
 .team {
   background-color: var(--second-bg-color);
@@ -423,6 +463,57 @@ body {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Модальне вікно */
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  z-index: 1;
+}
+
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 528px;
+  height: 581px;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--primary-bg-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.button-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.icon-box-close {
+  width: 11px;
+  height: 11px;
+}
 /* ===============  Портфоліо ============= */
 
 /* Фільтр */
@@ -496,6 +587,28 @@ body {
 .project-item:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.project-image {
+  position: relative;
+}
+
+.project-image-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 63px 24px;
+
+  font-size: 18px;
+  line-height: 1.56;
+  color: var(--second-acsent-color);
+  background-color: rgba(33, 150, 243, 0.9);
 }
 
 .project-card-title {
