@@ -49,6 +49,8 @@ body {
   color: inherit;
   text-decoration: none;
   font-style: inherit;
+
+  transition: 250ms color cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Логотип */
@@ -70,7 +72,12 @@ body {
 }
 
 /* Навігація */
-.header {
+.page-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+
   display: flex;
   flex-basis: 100%;
 
@@ -106,6 +113,8 @@ body {
   line-height: 1.14;
   letter-spacing: 0.02em;
   fill: var(--primari-text-color);
+
+  transition: 250ms color cubic-bezier(0.4, 0, 0.2, 1), 250ms fill cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-tab:hover,
@@ -193,6 +202,8 @@ body {
 
   background-color: var(--acsent-color);
   cursor: pointer;
+
+  transition: 250ms background-color cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-button:hover,
@@ -237,12 +248,29 @@ body {
 }
 
 .feature-icon-wrapper {
+  position: relative;
   display: flex;
   height: 120px;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
   background-color: var(--second-bg-color);
+}
+
+.feature-icon-wrapper::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(33, 149, 243, 0.5);
+  opacity: 0;
+  transition: 250ms opacity cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-icon-wrapper:hover::before {
+  opacity: 1;
 }
 
 .feature-icon-box {
@@ -296,7 +324,15 @@ body {
   text-align: center;
   text-transform: uppercase;
   color: var(--second-acsent-color);
+
+  opacity: 1;
+  transition: 250ms opacity cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.what_we_do-item-title:hover {
+  opacity: 0;
+}
+
 /* Наша коанда */
 .team {
   background-color: var(--second-bg-color);
@@ -366,12 +402,15 @@ body {
   border-radius: 50%;
 
   fill: var(--linc-fill-color);
+
+  transition: 250ms background-color cubic-bezier(0.4, 0, 0.2, 1),
+    250ms fill cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link:hover,
 .social-link:focus {
-  fill: var(--second-acsent-color);
   background-color: var(--acsent-color);
+  fill: var(--second-acsent-color);
 }
 
 .icon-box-social {
@@ -403,6 +442,8 @@ body {
   justify-content: center;
 
   fill: var(--linc-fill-color);
+
+  transition: 250ms border cubic-bezier(0.4, 0, 0.2, 1), 250ms fill cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-link:hover,
@@ -472,29 +513,38 @@ body {
   left: 0;
   bottom: 0;
 
-  z-index: 1;
+  opacity: 1;
+
+  transition: 250ms opacity cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden {
-  visibility: hidden;
   opacity: 0;
   pointer-events: none;
+  opacity: 0;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
 }
 
 .modal {
   position: absolute;
 
-  z-index: 2;
   top: 50%;
   left: 50%;
   width: 528px;
   height: 581px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
 
   background-color: var(--primary-bg-color);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  opacity: 1;
+
+  transition: 250ms transform cubic-bezier(0.4, 0, 0.2, 1),
+    250ms opacity cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button-close {
@@ -541,6 +591,9 @@ body {
   line-height: 1.62;
 
   background-color: var(--second-bg-color);
+
+  transition: 250ms box-shadow cubic-bezier(0.4, 0, 0.2, 1),
+    250ms color cubic-bezier(0.4, 0, 0.2, 1), 250ms background-color cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-button:hover,
@@ -576,6 +629,8 @@ body {
   margin-left: 30px;
 
   background-color: var(--primary-bg-color);
+
+  transition: 250ms box-shadow cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card-content {
@@ -591,16 +646,19 @@ body {
 
 .project-image {
   position: relative;
+  overflow: hidden;
 }
 
 .project-image-overlay {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(100%);
 
-  display: block;
+  transition: 250ms transform cubic-bezier(0.4, 0, 0.2, 1);
+
   margin-top: 0;
   margin-bottom: 0;
   padding: 63px 24px;
@@ -609,6 +667,10 @@ body {
   line-height: 1.56;
   color: var(--second-acsent-color);
   background-color: rgba(33, 150, 243, 0.9);
+}
+.project-item:hover .project-image-overlay,
+.project-item:focus .project-image-overlay {
+  transform: translateY(0);
 }
 
 .project-card-title {
